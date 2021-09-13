@@ -9,7 +9,7 @@ namespace SkillOrgBE.API.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int SkillLevelThreeId { get; set; }
+        public int SkillLevelThreeId{ get; set; }
 
         [Required]
         [MaxLength(50)]
@@ -22,6 +22,10 @@ namespace SkillOrgBE.API.Entities
         [ForeignKey("SkillLevelTwoId")]
         public SkillLevelTwo SkillLevelTwo{ get; set; }
         public int SkillLevelTwoId { get; set; }
+
+        [ForeignKey("SkillAdoptionId")]
+        public SkillAdoption SkillAdoption {get; set; }
+        public int SkillAdoptionId {get; set; }
 
     }
 }

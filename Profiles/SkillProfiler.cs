@@ -15,9 +15,14 @@ namespace SkillOrgBE.API.Profiles
 
             CreateMap<Entities.SkillLevelTwo, Models.SkillLevelTwoDto>().ReverseMap();
             CreateMap<Entities.SkillLevelTwo, Models.SkillLevelTwoPatchDTO>().ReverseMap();
+            CreateMap<Entities.SkillLevelTwo, Models.SkillLevelTwoWithoutLevels>().ReverseMap();
+
 
             CreateMap<Entities.SkillLevelOne, Models.SkillLevelOneDto>().ReverseMap();
-            CreateMap<Entities.SkillLevelOne, Models.SkillLevelOneDto>().ReverseMap();
+
+            CreateMap<Entities.SkillAdoption, Models.SkillAdoptionDTO>().ReverseMap();
+
+
         }
     }
 }

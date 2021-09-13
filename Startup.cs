@@ -33,10 +33,11 @@ namespace SkillOrgBE
             services
             .AddMvc(option => option.EnableEndpointRouting = false)
             .AddNewtonsoftJson();
-            var testConnectionString = _config["connectionStrings:latenightdb"];
-            services.AddDbContext<LnDBContext>(o =>
+            
+            var testConnectionString = _config["connectionStrings:latenightdbs"];
+            services.AddDbContext<SkillDBContext>(o =>
             {
-                o.UseSqlServer(testConnectionString);
+                o.UseNpgsql(testConnectionString);
             });
             services.AddScoped<ILnRepository, LnRepository>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

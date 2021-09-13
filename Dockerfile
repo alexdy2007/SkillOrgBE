@@ -17,6 +17,7 @@ FROM build AS publish
 RUN dotnet publish "SkillOrgBE.csproj" -c Release -o /app/publish
 
 FROM base AS final
+ENV ASPNETCORE_ENVIRONMENT="Development"
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "SkillOrgBE.dll"]

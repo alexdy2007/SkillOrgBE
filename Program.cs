@@ -20,7 +20,7 @@ namespace SkillOrgBE
 
             using (var scope = host.Services.CreateScope())
             {
-                var context = scope.ServiceProvider.GetService<LnDBContext>();
+                var context = scope.ServiceProvider.GetService<SkillDBContext>();
                 context.Database.EnsureDeleted();
                 context.Database.Migrate();
             }

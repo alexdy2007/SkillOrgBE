@@ -12,15 +12,18 @@ namespace SkillOrgBE.API.Services
     public class LnRepository : ILnRepository
     {
 
-        private readonly LnDBContext _context;
+        private readonly SkillDBContext _context;
 
-        public LnRepository(LnDBContext context)
+        public LnRepository(SkillDBContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
         public IEnumerable<SkillLevelThree> GetSkillsLevelThree()
         {
-            return _context.SkillLevelThree.ToList();
+            return _context.SkillLevelThree
+                .Include("SkillAdoption")
+                .Include("SkillLevelTwo")
+                .ToList();
         }
 
         /*SkillLevelThree*/
@@ -28,6 +31,8 @@ namespace SkillOrgBE.API.Services
         {
            
             return _context.SkillLevelThree
+                .Include("SkillAdoption")
+                .Include("SkillLevelTwo")
                 .Where(s => s.SkillLevelThreeId == skillLevelThreeId).FirstOrDefault();
         }
         public void AddSkillLevelThree(SkillLevelThree skillLevelThree)
@@ -120,6 +125,13 @@ namespace SkillOrgBE.API.Services
         public void DeleteSkillLevelOne(SkillLevelOne skillLevelOneEntity)
         {
             _context.SkillLevelOne.Remove(skillLevelOneEntity);
+        }
+
+
+        // Skill Adoption
+        public IEnumerable<SkillAdoption> GetSkillAdoption()
+        {
+            return _context.SkillAdoption.ToList();
         }
 
         public bool Save()

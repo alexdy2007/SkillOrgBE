@@ -32,6 +32,10 @@ namespace SkillOrgBE.API.Services
         bool SkillLevelOneExists(int SkillLevelTwoId);
         bool Save();
 
+        // SkillAdoption
+        IEnumerable<SkillAdoption> GetSkillAdoption();
+
+
     }
 
     public interface ILnRepositoryWithoutEF : ILnRepository
